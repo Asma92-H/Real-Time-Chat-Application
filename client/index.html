@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatSphere - Professional Real-Time Workspace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="join-container" class="join-screen">
+        <div class="join-card">
+            <div class="brand-logo">
+                <i class="fa-solid fa-comments"></i>
+                <h2>ChatSphere</h2>
+            </div>
+            <p class="subtitle">Secure Real-Time Messaging</p>
+            <form id="join-form">
+                <div class="input-group">
+                    <label for="username"><i class="fa-solid fa-user"></i> Display Name (Account)</label>
+                    <input type="text" id="username" placeholder="XXXX" required autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="room"><i class="fa-solid fa-door-open"></i> Select Chat Room</label>
+                    <select id="room">
+                        <option value="General">Asma's Team</option>
+                        <option value="Technology">Project Discussion</option>
+                        <option value="Design">Ideas & Updates</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Sign In <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="chat-container" class="chat-dashboard hidden">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fa-solid fa-bolt"></i> ChatApp</h3>
+                <span id="current-room-badge" class="badge">General</span>
+            </div>
+            <div class="user-profile-summary">
+                <label for="profilePicInput" style="cursor:pointer;" title="Change Profile Picture">
+                    <img id="myProfilePic" src="default-avatar.png" alt="Profile" class="profile-pic" style="width: 40px;border-radius:50%;object-fit:cover;">
+                </label>
+                <input type="file" id="profilePicInput" accept="image/*" style="display:none;">
+                                <div class="user-info">
+                    <h4 id="display-username">XXXX</h4>
+                    <span class="status-indicator"><span class="dot"></span> Online</span>
+                </div>
+            </div>
+            <div class="active-users-section">
+                <h4><i class="fa-solid fa-users"></i> Active Users (<span id="user-count">0</span>)</h4>
+                <ul id="users-list"></ul>
+            </div>
+            <div class="sidebar-footer">
+                <button id="leave-btn" class="btn-secondary"><i class="fa-solid fa-right-from-bracket"></i> Switch Room</button>
+            </div>
+        </aside>
+
+        <main class="chat-main">
+            <header class="chat-header">
+                <div class="chat-title-info">
+                    <h2 id="room-title">Workspace</h2>
+                    <span id="typing-indicator" class="typing-status"></span>
+                </div>
+                <div class="chat-header-actions">
+                    
+                    <button id="clear-chat-btn" class="btn-secondary" title="Clear Chat"><i class="fa-solid fa-trash"></i> Clear  </button>
+                    <button id="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+                </div>
+            </header>
+
+            <div id="chat-messages" class="chat-messages"></div>
+
+            <div class="chat-input-area">
+                <form id="chat-form">
+                    <label for="file-input" class="file-attach-btn" title="Share Media/Files">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    <input type="file" id="file-input" accept="image/*,.pdf,.doc,.docx" style="display: none;">
+                    
+                    <input type="text" id="msg-input" placeholder="Type a message (Use @username for private chat)..." autocomplete="off" required>
+                    
+                    <button type="submit" class="send-btn" title="Send">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+                <div id="file-preview-container" class="hidden">
+                    <span id="file-name-display"></span>
+                    <i class="fa-solid fa-xmark" id="remove-file"></i>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
